@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -53,12 +54,13 @@ public class MainActivity extends AppCompatActivity {
     private TextView resultsTextView;
     private static StringBuilder resultsStringBuilder = new StringBuilder();
     private static ProgressBar progressBar;
+    private static CardView progressCardView;
 
     private BarChart chartView;
     private LinkedHashMap<String, ArrayList<BarEntry>> chartEntrySets = new LinkedHashMap<>();
     private boolean                                    runningTests   = false;
     private String runningTestName;
-    private Thread runTestThread;
+
 
     private List<String> results;
 
@@ -86,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         resultsTextView = (TextView) findViewById(R.id.results);
         progressBar = (ProgressBar) findViewById(R.id.progress);
         progressBar.setIndeterminate(true);
+        progressCardView = (CardView) findViewById(R.id.fcv);
         chartView = (BarChart) findViewById(R.id.chart);
 
         if (savedInstanceState != null) {
@@ -152,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
     // handle graphing event
     public void onEventMainThread(TrialCompletedEvent event) {
         progressBar.setVisibility(View.GONE);
+        progressCardView.setVisibility(View.GONE);
         initChart();
         String resultStr = "";
         for (String strRes : results) {
@@ -193,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
             chartView.setVisibility(View.GONE);
             enableButtons(false);
             progressBar.setVisibility(View.VISIBLE);
+            progressCardView.setVisibility(View.VISIBLE);
         } else {
             runningTests = false;
             resultsTextView.setVisibility(View.GONE);
@@ -201,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
             }
             enableButtons(true);
             progressBar.setVisibility(View.GONE);
+            progressCardView.setVisibility(View.GONE);
         }
         if (runningTestName != null) {
             resultsLabel.setText(getResources().getString(R.string.results, testName));
@@ -280,7 +286,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void runSimpleTrial(View v) {
         reset(R.string.simple);
-        runTestThread = new Thread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 runningTests = true;
@@ -292,8 +298,7 @@ public class MainActivity extends AppCompatActivity {
                 SqlTester.testAddressItems(applicationContext);
                 EventBus.getDefault().post(new TrialCompletedEvent(getResources().getString(R.string.simple)));
             }
-        });
-        runTestThread.start();
+        }).start();
         System.gc();
     }
 
@@ -322,7 +327,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void runSimpleTrialRead(View view) {
         reset(R.string.simple);
-        runTestThread = new Thread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 runningTests = true;
@@ -334,8 +339,7 @@ public class MainActivity extends AppCompatActivity {
                 SqlTester.testAddressItemsRead(applicationContext);
                 EventBus.getDefault().post(new TrialCompletedEvent(getResources().getString(R.string.simple)));
             }
-        });
-        runTestThread.start();
+        }).start();
         System.gc();
     }
 
