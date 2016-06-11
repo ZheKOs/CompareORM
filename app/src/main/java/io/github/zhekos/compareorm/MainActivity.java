@@ -267,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addChartData(String framework, String category, long value) {
-        BarEntry entry = new BarEntry(value, category.equals(SAVE_TIME) ? 0 : 1);
+        BarEntry entry = new BarEntry(value, category.equals(SAVE_TIME) ? 0 : 5); //5 - start x for Load
         chartEntrySets.get(framework).add(entry);
     }
 
