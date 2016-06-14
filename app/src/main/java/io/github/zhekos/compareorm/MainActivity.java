@@ -241,10 +241,10 @@ public class MainActivity extends AppCompatActivity {
 
         chartEntrySets.clear();
         // the order you add these in is the order they're displayed in
-        chartEntrySets.put(DBFlowTester.FRAMEWORK_NAME, new ArrayList<BarEntry>());
+        chartEntrySets.put(RealmTester.FRAMEWORK_NAME, new ArrayList<BarEntry>());
         chartEntrySets.put(GreenDaoTester.FRAMEWORK_NAME, new ArrayList<BarEntry>());
         chartEntrySets.put(OrmLiteTester.FRAMEWORK_NAME, new ArrayList<BarEntry>());
-        chartEntrySets.put(RealmTester.FRAMEWORK_NAME, new ArrayList<BarEntry>());
+        chartEntrySets.put(DBFlowTester.FRAMEWORK_NAME, new ArrayList<BarEntry>());
         chartEntrySets.put(SqlTester.FRAMEWORK_NAME, new ArrayList<BarEntry>());
     }
 
@@ -252,15 +252,15 @@ public class MainActivity extends AppCompatActivity {
         // using the 300 line colors from https://material.google.com/style/color.html#color-color-palette
         switch (framework) {
             case DBFlowTester.FRAMEWORK_NAME:
-                return Color.rgb(0xF4, 0x43, 0x36); // red #F44336
+                return Color.rgb(0x21, 0x96, 0xF3); // blue #2196F3
             case GreenDaoTester.FRAMEWORK_NAME:
                 return Color.rgb(0x4C, 0xAF, 0x50); // green #4CAF50
             case OrmLiteTester.FRAMEWORK_NAME:
                 return Color.rgb(0xFF, 0x57, 0x22); // deep orange #FF5722
             case RealmTester.FRAMEWORK_NAME:
-                return Color.rgb(0x21, 0x96, 0XF3); // blue #2196F3
+                return Color.rgb(0xE9, 0x1E, 0X63); // pink #E91E63
             case SqlTester.FRAMEWORK_NAME:
-                return Color.rgb(0x9C, 0x27, 0xB0); // purple #9C27B0
+                return Color.rgb(0x60, 0x7D, 0x8B); // blue grey #607D8B
             default:
                 return Color.WHITE;
         }
@@ -283,7 +283,6 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param v button view
      */
-
     public void runSimpleTrial(View v) {
         reset(R.string.simple);
         new Thread(new Runnable() {
