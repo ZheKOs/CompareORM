@@ -17,8 +17,8 @@ The Complex trial is hierarchical and has support for multiple address books whe
 
 These are the results for the Simple trial:
 
-![Simple Trial](simple_test.png "Simple Trial")
+![Simple Trial](simple_test.PNG "Simple Trial")
 
 And these are the results for the Complex trial:
 
-![Complex Trial](complex_test.png "Complex Trial")
+![Complex Trial](complex_test.PNG "Complex Trial")
