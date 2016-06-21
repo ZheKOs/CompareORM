@@ -11,7 +11,7 @@ There are two benchmarks.  The Simple trial uses a flat schema for an address bo
 
 The Complex trial is hierarchical and has support for multiple address books where each address book has contacts and addresses.
 
-![Address Book Schema](db_comorm(1).png "Address Book Schema")
+![Address Book Schema](db_comorm(2).png "Address Book Schema")
 
 ## Results
 
